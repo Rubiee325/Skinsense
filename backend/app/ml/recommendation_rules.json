@@ -1,0 +1,34 @@
+[
+  {
+    "id": "acne_mild",
+    "if_top_class": "acne",
+    "min_prob": 0.4,
+    "recommendations": [
+      {
+        "title": "Topical benzoyl peroxide (2.5–5%)",
+        "summary": "Apply a thin layer once daily at night; watch for irritation and avoid mucous membranes.",
+        "evidence_level": "B (guideline-based, OTC-focused)",
+        "when_to_see_doctor": "If lesions worsen after 6–8 weeks, involve nodules, or lead to scarring, seek dermatology review."
+      }
+    ]
+  },
+  {
+    "id": "melanoma_suspect",
+    "if_top_class": "melanoma_suspect",
+    "min_prob": 0.2,
+    "recommendations": [
+      {
+        "title": "Urgent in-person dermatology assessment",
+        "summary": "Lesions suspicious for melanoma require timely face-to-face evaluation and possible biopsy.",
+        "evidence_level": "A (strong guideline consensus)",
+        "when_to_see_doctor": "Aim for specialist review within 2 weeks, or sooner if rapid growth, bleeding, or color change."
+      }
+    ]
+  }
+]
+
+
+
+
+
+
