@@ -2,6 +2,8 @@ from typing import List, Optional
 
 from fastapi import APIRouter, File, UploadFile, HTTPException
 from pydantic import BaseModel
+from sanity_check import is_skin_image_from_bytes
+
 
 from ..services.ml_service import (
     get_detector_service,
@@ -38,9 +40,19 @@ async def predict(
     rec_engine = get_recommendation_service()
 
     contents = await file.read()
+
+    # 🛑 ADD THIS BLOCK (SKIN VALIDATION)
+    if not is_skin_image_from_bytes(contents):
+        raise HTTPException(
+            status_code=400,
+            detail="Please upload a valid skin image"
+        )
+
+    # ✅ EXISTING CODE (UNCHANGED)
     result = detector.predict_image_bytes(contents, metadata=metadata)
     recs = rec_engine.get_recommendations(result)
     return {"prediction": result, "recommendations": recs}
+
 
 
 @router.post("/predict_sequence")

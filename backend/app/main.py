@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+# app/main.py
+from sanity_check import is_skin_image
+import cv2
 from .routers import inference, timeline, uploads, reports
 from .db import Base, engine
 
@@ -37,5 +39,23 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
+def predict_image(image_path):
+    image = cv2.imread(image_path)
+
+    # 🔴 ADD THIS BLOCK
+    if not is_skin_image(image):
+        return {
+            "status": "error",
+            "message": "Uploaded image is not skin-related. Please upload a valid skin image."
+        }
+
+    # ✅ EXISTING CODE (UNCHANGED)
+    result = run_skin_disease_prediction(image)
+    return {
+        "status": "success",
+        "prediction": result
+    }
+
+
 
 
