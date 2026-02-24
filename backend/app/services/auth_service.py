@@ -12,7 +12,8 @@ async def create_user(
     password: str,
     name: str,
     age: int,
-    gender: str
+    gender: str,
+    role: str = "patient"
 ) -> dict:
     """Create a new user in MongoDB."""
     db = get_database()
@@ -36,6 +37,7 @@ async def create_user(
         "name": name,
         "age": age,
         "gender": gender,
+        "role": role,
         "created_at": datetime.utcnow().isoformat()
     }
     

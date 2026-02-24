@@ -12,6 +12,7 @@ class SignupRequest(BaseModel):
     name: str = Field(..., min_length=1)
     age: int = Field(..., ge=0, le=150)
     gender: str = Field(..., min_length=1)
+    role: str = Field("patient", pattern="^(patient|dermatologist)$")
 
 
 class LoginRequest(BaseModel):
@@ -40,7 +41,8 @@ async def signup(request: SignupRequest):
             password=request.password,
             name=request.name,
             age=request.age,
-            gender=request.gender
+            gender=request.gender,
+            role=request.role
         )
         return SignupResponse(
             message="User created successfully",

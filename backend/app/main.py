@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # app/main.py
 from sanity_check import is_skin_image
 import cv2
-from .routers import inference, timeline, uploads, reports
+from .routers import auth, inference, timeline, uploads, reports, dashboard, dermatologist
 from .db import Base, engine
 
 
@@ -30,10 +30,13 @@ def create_app() -> FastAPI:
     async def health() -> dict:
         return {"status": "ok"}
 
+    app.include_router(auth.router)
     app.include_router(inference.router)
     app.include_router(timeline.router)
     app.include_router(uploads.router)
     app.include_router(reports.router)
+    app.include_router(dashboard.router)
+    app.include_router(dermatologist.router)
 
     return app
 
