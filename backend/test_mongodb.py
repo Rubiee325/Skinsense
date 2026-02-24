@@ -13,7 +13,7 @@ try:
     from dotenv import load_dotenv
     load_dotenv()
 except ImportError:
-    print("⚠️  python-dotenv not installed. Install with: pip install python-dotenv")
+    print("WARNING: python-dotenv not installed. Install with: pip install python-dotenv")
     print("   (You can still use environment variables directly)")
 
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -24,7 +24,7 @@ async def test_mongodb_connection():
     mongodb_url = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
     database_name = os.getenv("MONGODB_DATABASE", "skinmorph")
     
-    print(f"🔍 Testing MongoDB connection...")
+    print(f"INFO: Testing MongoDB connection...")
     print(f"   URL: {mongodb_url.replace('://', '://***:***@') if '@' in mongodb_url else mongodb_url}")
     print(f"   Database: {database_name}")
     print()
@@ -35,7 +35,7 @@ async def test_mongodb_connection():
         
         # Test connection
         await client.admin.command('ping')
-        print("✅ MongoDB connection successful!")
+        print("SUCCESS: MongoDB connection successful!")
         print()
         
         # Get database
@@ -43,7 +43,7 @@ async def test_mongodb_connection():
         
         # List collections
         collections = await db.list_collection_names()
-        print(f"📊 Database '{database_name}' exists")
+        print(f"DATA: Database '{database_name}' exists")
         print(f"   Collections: {collections if collections else '(none yet)'}")
         print()
         
@@ -51,21 +51,21 @@ async def test_mongodb_connection():
         users_count = await db.users.count_documents({})
         predictions_count = await db.predictions.count_documents({})
         
-        print(f"👥 Users in database: {users_count}")
-        print(f"🔬 Predictions in database: {predictions_count}")
+        print(f"USERS: Users in database: {users_count}")
+        print(f"PREDICTIONS: Predictions in database: {predictions_count}")
         print()
         
-        print("✅ MongoDB is ready to use!")
+        print("SUCCESS: MongoDB is ready to use!")
         
         # Close connection
         client.close()
         return True
         
     except Exception as e:
-        print(f"❌ MongoDB connection failed!")
+        print(f"ERROR: MongoDB connection failed!")
         print(f"   Error: {str(e)}")
         print()
-        print("💡 Troubleshooting:")
+        print("Troubleshooting:")
         print("   1. Is MongoDB running? (Check with: Get-Service MongoDB)")
         print("   2. Check your MONGODB_URL in .env file")
         print("   3. For Atlas: Is your IP whitelisted?")

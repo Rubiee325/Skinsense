@@ -21,6 +21,12 @@ opencv-python==4.10.0.84
 pytest==8.3.3
 httpx==0.27.2
 
+# Database & Auth
+motor==3.6.0
+python-dotenv==1.0.1
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+
 black==24.8.0
 flake8==7.1.1
 isort==5.13.2
