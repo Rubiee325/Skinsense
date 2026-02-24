@@ -76,5 +76,3 @@ async def upload_and_register(
         "observation_id": obs.id,
         "top_class": top,
     }
-
-

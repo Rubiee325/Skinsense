@@ -55,7 +55,3 @@ def predict_image(image_path):
         "status": "success",
         "prediction": result
     }
-
-
-
-

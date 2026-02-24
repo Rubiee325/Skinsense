@@ -41,5 +41,3 @@ async def get_timeline(user_id: int | None = None, db: Session = Depends(get_db)
         )
 
     return {"user_id": user_id, "lesions": lesion_payload}
-
-

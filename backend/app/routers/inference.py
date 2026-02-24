@@ -70,9 +70,3 @@ async def predict_sequence(
         contents_list, metadata_json=metadata, timestamps=timestamps
     )
     return result
-
-
-
-
-
-

@@ -57,9 +57,3 @@ class Image(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
     observation: Mapped[Observation] = relationship("Observation", back_populates="images")
-
-
-
-
-
-

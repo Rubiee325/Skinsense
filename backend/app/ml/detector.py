@@ -72,9 +72,3 @@ class DetectorModel:
             "gradcam_overlay_png_b64": heatmap_png_b64,
             "metadata_echo": metadata,
         }
-
-
-
-
-
-
